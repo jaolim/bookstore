@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 
+
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <title>Bookstore</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Bookstore</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
-<body>
+<body style="margin:20px">
     <p><a th:href="@{/}">Home</a></p>
     <h1>Book list:</h1>
 
     <div>
-      <table>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Year</th>
-            <th>ISBN</th>
-            <th>Price</th>
-        </tr>
-        <tr th:each = "book : ${books}">
-          <td th:text="${book.title}"></td>
-          <td th:text="${book.author}"></td>
-          <td th:text="${book.publicationYear}"></td>
-          <td th:text="${book.isbn}"></td>
-          <td th:text="${book.price}"></td>
-          <td><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
-          <td><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
-        </tr>
-      </table>
+        <table class="table table-striped">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>ISBN</th>
+                <th>Price</th>
+            </tr>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.publicationYear}"></td>
+                <td th:text="${book.isbn}"></td>
+                <td th:text="${book.price}"></td>
+                <td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
+                <td><a class="btn btn-info"th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
+            </tr>
+        </table>
     </div>
-    <p><a th:href="@{/add}">Add book</a></p>
+    <p><a class="btn btn-success" th:href="@{/add}">Add book</a></p>
 </body>

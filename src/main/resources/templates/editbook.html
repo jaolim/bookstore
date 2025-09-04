@@ -3,16 +3,17 @@
 
 <head>
     <title>Add book</title>
+        <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
-<body>
+<body style="margin:20px">
     <h1>Add book</h1>
     <div>
         <form th:object="${book}" th:action="@{../save}" action="#" method="post">
             <p><label for="id"></label></p>
             <input type="hidden" id="id" th:field="*{id}" readonly="readonly" />
-            
+
             <p><label for="fname">Title</label></p>
             <input type="text" id="title" th:field="*{title}" />
             
@@ -28,7 +29,11 @@
             <p><label for="price">Price</label></p>
             <input type="text" th:field="*{price}" />
 
-            <p><input type="submit" value="Save"></input></p>
+            <p style="margin-top: 20px">
+                <input class="btn btn-success" type="submit" value="Save"></input>
+                <a class="btn btn-secondary" th:href="@{/booklist}">Cancel</a>
+            </p>
+        
     </div>
     </form>
     </div>

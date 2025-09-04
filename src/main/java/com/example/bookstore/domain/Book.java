@@ -17,6 +17,7 @@ public class Book {
 
     }
 
+    //Keeping everything as String for convenience until functionality benefits form swapping datatypes
     public Book(String title, String author, String publicationYear, String isbn, String price) {
         this.title = title;
         this.author = author;
