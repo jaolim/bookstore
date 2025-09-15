@@ -1,9 +1,17 @@
 package com.example.bookstore.domain;
 
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 
 @Entity
 public class Book {
@@ -11,19 +19,36 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String title, author, publicationYear, isbn, price;
+    @NotEmpty(message = "Title required")
+    @Size(min = 1, max = 250)
+    private String title;
+    @Min(value = 0, message  = "Year cannot be negative or null")
+    private Integer publicationYear;
+    @ManyToOne
+    @JoinColumn(name = "categoryid")
+    private Category category;
+    private String author, isbn, price;
 
     public Book() {
 
     }
 
-    //Keeping everything as String for convenience until functionality benefits form swapping datatypes
-    public Book(String title, String author, String publicationYear, String isbn, String price) {
+    public Book(String title, String author, Integer publicationYear, String isbn, String price, Category category ) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
         this.isbn = isbn;
         this.price = price;
+        this.category = category;
+    }
+
+        public Book(String title, String author, Integer publicationYear, String isbn, String price) {
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
+        this.isbn = isbn;
+        this.price = price;
+        this.category = null;
     }
 
     public Long getId() {
@@ -42,7 +67,7 @@ public class Book {
         this.author = author;
     }
 
-    public void setPublicationYear(String publicationYear) {
+    public void setPublicationYear(Integer publicationYear) {
         this.publicationYear = publicationYear;
     }
 
@@ -62,7 +87,7 @@ public class Book {
         return author;
     }
 
-    public String getPublicationYear() {
+    public Integer getPublicationYear() {
         return publicationYear;
     }
 
@@ -73,10 +98,19 @@ public class Book {
     public String getPrice() {
         return price;
     }
+ 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+    
 
     @Override
     public String toString(){
-        return "Book: [" + title + ", " + author + ", " + publicationYear + ", " + isbn + ", " + price + "]";
+        return "Book: [" + title + ", " + author + ", " + publicationYear + ", " + isbn + ", " + price + ", " + category +"]";
     }
 
 }
