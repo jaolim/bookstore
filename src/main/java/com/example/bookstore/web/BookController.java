@@ -1,6 +1,5 @@
 package com.example.bookstore.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,19 +15,22 @@ import com.example.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookController {
-
+/*
     @Autowired
     private BookRepository repository;
 
     @Autowired
     private CategoryRepository crepository;
-    /* 
+     */
     private BookRepository repository;
+    private CategoryRepository crepository;
 
-    public BookController(BookRepository repository) {
+    public BookController(BookRepository repository,
+        CategoryRepository crepository) {
         this.repository = repository;
+        this.crepository = crepository;
     }
-*/
+
 
     public static Category testCategory = new Category("fantasy");
     public static Book testBook = new Book("Testi", "Testaaja", 2000, "0123456789123", "12,21", testCategory);

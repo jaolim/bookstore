@@ -32,8 +32,8 @@ public class BookstoreApplication {
 			crepository.save(category2);
 			crepository.save(category3);
 			repository.save(new Book("Testi", "Testaaja", 2000, "9876543120123", "15,50", category1));
-			repository.save(new Book("Testaamisen ilo", "Testaaja", 1999, "1234567890321", "19,99"));
-
+			repository.save(new Book("Testaamisen ilo", "Testaaja", 1999, "1234567890321", "19,99", category2));
+			repository.save(new Book("Testaamisen latina", "Lorem Ipsum", 2025, "1133554488996", "29,99", category1));
 			log.info("fetch books");
 			for (Book book : repository.findAll()) {
 				log.info(book.toString());
