@@ -38,12 +38,12 @@ public class RestBookController {
         return repository.findById(bookId);
     }
 
-    @PostMapping(value = "/postbook")
+    @PostMapping(value = "/books")
     public Book addBookRest(@RequestBody Book book) {
         return repository.save(book);
     }
 
-    @PutMapping(value = "/editbook/{id}")
+    @PutMapping(value = "/books/{id}")
     public Book editBookRest(@RequestBody Book book, @PathVariable("id") Long bookId) {
         Optional<Book> exists = repository.findById(bookId);
         if (exists.isPresent()) {
