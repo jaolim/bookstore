@@ -15,22 +15,21 @@ import com.example.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookController {
-/*
-    @Autowired
-    private BookRepository repository;
-
-    @Autowired
-    private CategoryRepository crepository;
+    /*
+     * @Autowired
+     * private BookRepository repository;
+     * 
+     * @Autowired
+     * private CategoryRepository crepository;
      */
     private BookRepository repository;
     private CategoryRepository crepository;
 
     public BookController(BookRepository repository,
-        CategoryRepository crepository) {
+            CategoryRepository crepository) {
         this.repository = repository;
         this.crepository = crepository;
     }
-
 
     public static Category testCategory = new Category("fantasy");
     public static Book testBook = new Book("Testi", "Testaaja", 2000, "0123456789123", "12,21", testCategory);
@@ -60,7 +59,9 @@ public class BookController {
 
     @PostMapping(value = "/save")
     public String saveBook(Book book) {
-        repository.save(book);
+        if (!book.getTitle().isEmpty()) {
+            repository.save(book);
+        }
         return "redirect:booklist";
     }
 
@@ -75,6 +76,11 @@ public class BookController {
     public String deleteStudent(@PathVariable("id") Long bookId, Model model) {
         repository.deleteById(bookId);
         return "redirect:../booklist";
+    }
+
+    @GetMapping(value = "/login")
+    public String login() {
+        return "login";
     }
 
 }

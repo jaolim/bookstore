@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.example.bookstore.domain.BookRepository;
+import com.example.bookstore.domain.AppUser;
+import com.example.bookstore.domain.AppUserRepository;
 import com.example.bookstore.domain.Book;
 import com.example.bookstore.domain.Category;
 import com.example.bookstore.domain.CategoryRepository;
@@ -23,11 +25,17 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner bookStore(BookRepository repository, CategoryRepository crepository) {
+	public CommandLineRunner bookStore(BookRepository repository, CategoryRepository crepository, AppUserRepository aurepository) {
 		return (args) -> {
 			Category category1 = new Category("scifi");
 			Category category2 = new Category("fiction");
 			Category category3 = new Category("non-fiction");
+			AppUser userUser = new AppUser("user", "$2a$10$lmL29TlV8wHsF1O1BqrOdef0dIMNx/pHm8j0uCSRXlSD0qIWQjXe.", "USER"); //pw: sala
+			AppUser userAdmin = new AppUser("admin", "$2a$10$nuwMhQSsMVCs9WpP4izM3eix57qb2wSI0xW1DAbdt8GVuP7Uxs6.2", "ADMIN");
+
+			
+			aurepository.save(userUser);
+			aurepository.save(userAdmin);
 			crepository.save(category1);
 			crepository.save(category2);
 			crepository.save(category3);

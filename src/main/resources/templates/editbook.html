@@ -1,13 +1,18 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <title>Add book</title>
-        <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
 <body style="margin:20px">
+    <i>User: <span sec:authentication="name"></span></i>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout" class="btn btn-sm btn-danger" />
+    </form>
     <h1>Add book</h1>
     <div>
         <form th:object="${book}" th:action="@{../save}" action="#" method="post">
@@ -16,7 +21,7 @@
 
             <p><label for="fname">Title</label></p>
             <input type="text" id="title" th:field="*{title}" />
-            
+
             <p><label for="lname">Author</label></p>
             <input type="text" id="author" th:field="*{author}" />
 
@@ -34,12 +39,12 @@
                 <option th:each="category: ${categories}" th:value="${category.categoryid}" th:text="${category.name}">
                 </option>
             </select>
-            
+
             <p style="margin-top: 20px">
                 <input class="btn btn-success" type="submit" value="Save"></input>
                 <a class="btn btn-secondary" th:href="@{/booklist}">Cancel</a>
             </p>
-        
+
     </div>
     </form>
     </div>
