@@ -16,7 +16,10 @@ CREATE TABLE book
     publicationyear INTEGER,
     isbn VARCHAR(20) NULL,
     price VARCHAR(20) NULL,
-    categoryid BIGINT
+    categoryid BIGINT,
+	CONSTRAINT fk_book_category
+		FOREIGN KEY(categoryid)
+			REFERENCES category(categoryid)
 );
 
 CREATE TABLE appuser
@@ -31,3 +34,5 @@ INSERT INTO appuser (username, passwordhash, userrole) VALUES ('user', '$2a$10$l
 INSERT INTO appuser (username, passwordhash, userrole) VALUES ('admin', '$2a$10$nuwMhQSsMVCs9WpP4izM3eix57qb2wSI0xW1DAbdt8GVuP7Uxs6.2', 'ADMIN');
 
 INSERT INTO book (title, author, publicationyear, isbn, price, categoryid) VALUES ('testi', 'testaaja', '1999', '7788996655442', '29.99', '1');
+
+INSERT INTO book (title, author, publicationyear, isbn, price, categoryid) VALUES ('Testaamisen ilo', 'Testaaja', '2025', '5566448877991', '45', '2');
