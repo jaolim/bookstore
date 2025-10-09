@@ -5,8 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="appuser")
 public class AppUser {
 
     @Id
@@ -17,10 +19,10 @@ public class AppUser {
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "passwordhash", nullable = false)
     private String passwordHash;
 
-    @Column(name = "role", nullable = false)
+    @Column(name = "userrole", nullable = false)
     private String role;
 
     public AppUser() {

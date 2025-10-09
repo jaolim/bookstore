@@ -23,10 +23,11 @@ public class BookstoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BookstoreApplication.class, args);
 	}
-
+/*
 	@Bean
 	public CommandLineRunner bookStore(BookRepository repository, CategoryRepository crepository, AppUserRepository aurepository) {
 		return (args) -> {
+			 
 			Category category1 = new Category("scifi");
 			Category category2 = new Category("fiction");
 			Category category3 = new Category("non-fiction");
@@ -46,8 +47,9 @@ public class BookstoreApplication {
 			for (Book book : repository.findAll()) {
 				log.info(book.toString());
 			}
+				
 
 		};
 	}
-
+*/
 }

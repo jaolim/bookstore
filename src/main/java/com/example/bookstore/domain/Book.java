@@ -17,13 +17,13 @@ import jakarta.validation.constraints.Size;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty(message = "Title required")
     @Size(min = 1, max = 250)
     private String title;
     @Min(value = 0, message  = "Year cannot be negative or null")
-    private Integer publicationYear;
+    private Integer publicationyear;
     @ManyToOne
     @JoinColumn(name = "categoryid")
     private Category category;
@@ -33,19 +33,19 @@ public class Book {
 
     }
 
-    public Book(String title, String author, Integer publicationYear, String isbn, String price, Category category ) {
+    public Book(String title, String author, Integer publicationyear, String isbn, String price, Category category ) {
         this.title = title;
         this.author = author;
-        this.publicationYear = publicationYear;
+        this.publicationyear = publicationyear;
         this.isbn = isbn;
         this.price = price;
         this.category = category;
     }
 
-        public Book(String title, String author, Integer publicationYear, String isbn, String price) {
+        public Book(String title, String author, Integer publicationyear, String isbn, String price) {
         this.title = title;
         this.author = author;
-        this.publicationYear = publicationYear;
+        this.publicationyear = publicationyear;
         this.isbn = isbn;
         this.price = price;
         this.category = null;
@@ -67,8 +67,8 @@ public class Book {
         this.author = author;
     }
 
-    public void setPublicationYear(Integer publicationYear) {
-        this.publicationYear = publicationYear;
+    public void setpublicationyear(Integer publicationyear) {
+        this.publicationyear = publicationyear;
     }
 
     public void setIsbn(String isbn) {
@@ -87,8 +87,8 @@ public class Book {
         return author;
     }
 
-    public Integer getPublicationYear() {
-        return publicationYear;
+    public Integer getPublicationyear() {
+        return publicationyear;
     }
 
     public String getIsbn() {
@@ -110,7 +110,7 @@ public class Book {
 
     @Override
     public String toString(){
-        return "Book: [" + title + ", " + author + ", " + publicationYear + ", " + isbn + ", " + price + ", " + category +"]";
+        return "Book: [" + title + ", " + author + ", " + publicationyear + ", " + isbn + ", " + price + ", " + category +"]";
     }
 
 }
