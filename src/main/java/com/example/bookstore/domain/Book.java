@@ -2,50 +2,62 @@ package com.example.bookstore.domain;
 
 import org.hibernate.annotations.ManyToAny;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-
 @Entity
+@Table(name = "book")
 public class Book {
 
+    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "title")
     @NotEmpty(message = "Title required")
     @Size(min = 1, max = 250)
     private String title;
-    @Min(value = 0, message  = "Year cannot be negative or null")
-    private Integer publicationyear;
+    @Column(name = "publicationyear")
+    @Min(value = 0, message = "Year cannot be negative or null")
+    private Integer publicationYear;
+   // @Column(name = "categoryid")
     @ManyToOne
     @JoinColumn(name = "categoryid")
     private Category category;
-    private String author, isbn, price;
+
+    @Column(name = "author")
+    private String author;
+    @Column(name = "isbn")
+    private String isbn;
+    @Column(name = "price")
+    private String price;
 
     public Book() {
 
     }
 
-    public Book(String title, String author, Integer publicationyear, String isbn, String price, Category category ) {
+    public Book(String title, String author, Integer publicationYear, String isbn, String price, Category category) {
         this.title = title;
         this.author = author;
-        this.publicationyear = publicationyear;
+        this.publicationYear = publicationYear;
         this.isbn = isbn;
         this.price = price;
         this.category = category;
     }
 
-        public Book(String title, String author, Integer publicationyear, String isbn, String price) {
+    public Book(String title, String author, Integer publicationYear, String isbn, String price) {
         this.title = title;
         this.author = author;
-        this.publicationyear = publicationyear;
+        this.publicationYear = publicationYear;
         this.isbn = isbn;
         this.price = price;
         this.category = null;
@@ -67,8 +79,8 @@ public class Book {
         this.author = author;
     }
 
-    public void setpublicationyear(Integer publicationyear) {
-        this.publicationyear = publicationyear;
+    public void setpublicationYear(Integer publicationYear) {
+        this.publicationYear = publicationYear;
     }
 
     public void setIsbn(String isbn) {
@@ -87,8 +99,8 @@ public class Book {
         return author;
     }
 
-    public Integer getPublicationyear() {
-        return publicationyear;
+    public Integer getPublicationYear() {
+        return publicationYear;
     }
 
     public String getIsbn() {
@@ -98,7 +110,7 @@ public class Book {
     public String getPrice() {
         return price;
     }
- 
+
     public Category getCategory() {
         return category;
     }
@@ -106,11 +118,11 @@ public class Book {
     public void setCategory(Category category) {
         this.category = category;
     }
-    
 
     @Override
-    public String toString(){
-        return "Book: [" + title + ", " + author + ", " + publicationyear + ", " + isbn + ", " + price + ", " + category +"]";
+    public String toString() {
+        return "Book: [" + title + ", " + author + ", " + publicationYear + ", " + isbn + ", " + price + ", " + category
+                + "]";
     }
 
 }
